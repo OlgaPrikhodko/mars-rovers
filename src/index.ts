@@ -8,3 +8,7 @@
 
 // Expected Output:
 // 1 3 N       // Rover Position
+
+// plateau = createPlateau(x: number, y: number)
+// rover: Rover = createRover(pos: Position)
+// newPos:Position = setInstruction(rover: Rover, instructions: string)
