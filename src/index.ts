@@ -18,55 +18,14 @@ type Direction = typeof directions[number];
 const possibleInstructions = ["L", "R", "M"] as const;
 export type InstructionsType = typeof possibleInstructions[number];
 
-export interface Position {
+export interface Coordinates {
   x: number;
   y: number;
 }
 
 export interface RoverPosition {
-  coords: Position;
+  coords: Coordinates;
   direction: Direction;
-}
-
-interface Rover {
-  pos: RoverPosition;
-}
-
-// MAIN
-let pos: RoverPosition = { coords: { x: 1, y: 2 }, direction: "N" };
-const instructions = getInstructions("LMLMLMLMM");
-
-function getInstructions(s: string): InstructionsType[] {
-  const res: InstructionsType[] = [];
-
-  for (let letter of s) {
-    if (letter === "L" || letter === "R" || letter === "M") {
-      res.push(letter);
-    } else throw new Error("wrong instructions");
-  }
-
-  return res;
-}
-
-const newPos = setInstructions(pos, instructions);
-
-function setInstructions(pos: RoverPosition, instructions: InstructionsType[]) {
-  for (let instruction of instructions) {
-    pos = setInstruction(pos, instruction);
-  }
-
-  return pos;
-}
-
-export function setInstruction(
-  pos: RoverPosition,
-  instruction: string
-): RoverPosition {
-  if (instruction === "M") {
-    return moveRover(pos);
-  }
-
-  return changeDirection(pos);
 }
 
 // ROVER ACTIONS
@@ -79,6 +38,44 @@ function moveRover(pos: RoverPosition): RoverPosition {
   return pos;
 }
 
-function changeDirection(pos: RoverPosition): RoverPosition {
+const turnLeftDictionary: { [key: string]: Direction } = {
+  N: "E",
+  E: "S",
+  S: "W",
+  W: "N",
+} as const;
+
+const turnLeft = (pos: RoverPosition): RoverPosition => {
+  pos.direction = turnLeftDictionary[pos.direction];
+
+  return pos;
+};
+
+// MAIN
+
+const setInstructions = (pos: RoverPosition, instructions: string) => {
+  for (let instruction of instructions.split("")) {
+    pos = setInstruction(pos, instruction);
+  }
+
+  return pos;
+};
+
+export function setInstruction(
+  pos: RoverPosition,
+  instruction: string
+): RoverPosition {
+  if (instruction === "M") {
+    return moveRover(pos);
+  }
+
+  if (instruction === "L") return turnLeft(pos);
+
   return pos;
 }
+
+// USAGE
+// let pos: RoverPosition = { coords: { x: 1, y: 2 }, direction: "N" };
+// const instructions = getInstructions("LMLMLMLMM");
+
+// const newPos = setInstructions(pos, instructions);
