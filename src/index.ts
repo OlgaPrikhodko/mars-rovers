@@ -70,10 +70,17 @@ export function setInstruction(
 }
 
 // ROVER ACTIONS
-function moveRover(pos: RoverPosition): RoverPosition {
+function move(pos: RoverPosition): RoverPosition {
   if (pos.direction === "N") pos.coords.y = pos.coords.y + 1;
+  if (pos.direction === "E") pos.coords.x = pos.coords.x + 1;
+  if (pos.direction === "S") pos.coords.y = pos.coords.y - 1;
+  if (pos.direction === "W") pos.coords.x = pos.coords.x - 1;
 
   return pos;
+}
+
+function moveRover(pos: RoverPosition): RoverPosition {
+  return move(pos);
 }
 
 function changeDirection(pos: RoverPosition): RoverPosition {
