@@ -8,19 +8,19 @@ describe("test setInstruction function", () => {
         direction: "N",
       };
       expect(setInstruction(roverPos, "M")).toEqual({
+        ...roverPos,
         coords: { x: 1, y: 3 },
-        direction: "N",
       });
     });
 
     it("if direction E should increment X coord", () => {
       const roverPos: RoverPosition = {
-        coords: { x: 1, y: 2 },
         direction: "E",
+        coords: { x: 1, y: 2 },
       };
       expect(setInstruction(roverPos, "M")).toEqual({
+        ...roverPos,
         coords: { x: 2, y: 2 },
-        direction: "E",
       });
     });
 
@@ -30,8 +30,8 @@ describe("test setInstruction function", () => {
         direction: "S",
       };
       expect(setInstruction(roverPos, "M")).toEqual({
+        ...roverPos,
         coords: { x: 1, y: 1 },
-        direction: "S",
       });
     });
 
@@ -41,8 +41,8 @@ describe("test setInstruction function", () => {
         direction: "W",
       };
       expect(setInstruction(roverPos, "M")).toEqual({
+        ...roverPos,
         coords: { x: 0, y: 2 },
-        direction: "W",
       });
     });
   });

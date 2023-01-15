@@ -38,20 +38,21 @@ const turnLeft = (direction: Direction) => {
   return turnLeftDictionary[direction];
 };
 
-function moveRover(pos: RoverPosition): RoverPosition {
-  if (pos.direction === "N") pos.coords.y = pos.coords.y + 1;
-  if (pos.direction === "E") pos.coords.x = pos.coords.x + 1;
-  if (pos.direction === "S") pos.coords.y = pos.coords.y - 1;
-  if (pos.direction === "W") pos.coords.x = pos.coords.x - 1;
+function moveRover(direction: Direction, coords: Coordinates): Coordinates {
+  if (direction === "N") coords.y = coords.y + 1;
+  if (direction === "E") coords.x = coords.x + 1;
+  if (direction === "S") coords.y = coords.y - 1;
+  if (direction === "W") coords.x = coords.x - 1;
 
-  return pos;
+  return coords;
 }
 
 export const setInstruction = (
   pos: RoverPosition,
   instruction: string
 ): RoverPosition => {
-  if (instruction === "M") return moveRover(pos);
+  if (instruction === "M")
+    return { ...pos, coords: moveRover(pos.direction, pos.coords) };
 
   if (instruction === "L")
     return { ...pos, direction: turnLeft(pos.direction) };
