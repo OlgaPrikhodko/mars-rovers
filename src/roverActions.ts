@@ -9,6 +9,7 @@ export interface Coordinates {
 export interface RoverPosition {
   coords: Coordinates;
   direction: Direction;
+  // limitCoords: Coordinates;
 }
 
 interface TurnDictionary {
@@ -29,16 +30,12 @@ const turnRightDictionary: TurnDictionary = {
   W: "S",
 } as const;
 
-const turnLeft = (pos: RoverPosition): RoverPosition => {
-  pos.direction = turnLeftDictionary[pos.direction];
-
-  return pos;
+const turnRight = (direction: Direction) => {
+  return turnRightDictionary[direction];
 };
 
-const turnRight = (pos: RoverPosition): RoverPosition => {
-  pos.direction = turnRightDictionary[pos.direction];
-
-  return pos;
+const turnLeft = (direction: Direction) => {
+  return turnLeftDictionary[direction];
 };
 
 function moveRover(pos: RoverPosition): RoverPosition {
@@ -56,9 +53,10 @@ export const setInstruction = (
 ): RoverPosition => {
   if (instruction === "M") return moveRover(pos);
 
-  if (instruction === "L") return turnLeft(pos);
-
-  if (instruction === "R") return turnRight(pos);
+  if (instruction === "L")
+    return { ...pos, direction: turnLeft(pos.direction) };
+  if (instruction === "R")
+    return { ...pos, direction: turnRight(pos.direction) };
 
   return pos;
 };

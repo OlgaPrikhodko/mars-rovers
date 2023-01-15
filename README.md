@@ -53,3 +53,13 @@ before the next one can move.
 
 For each Rover, the output represents its final position (final coordinates and where it is
 facing).
+
+// Lines of Input to the Program:
+// 5 5 // Plateau
+// 1 2 N // Rover Position
+// LMLMLMLMM // Instructions
+// MMRMMRMRRM
+
+// Expected Output:
+// 1 3 N // Rover Position
+// 5 1 E // Rover Position

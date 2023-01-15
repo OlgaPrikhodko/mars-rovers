@@ -54,7 +54,7 @@ describe("test setInstruction function", () => {
         direction: "N",
       };
       expect(setInstruction(roverPos, "L")).toEqual({
-        coords: { x: 1, y: 2 },
+        ...roverPos,
         direction: "E",
       });
     });
@@ -65,7 +65,7 @@ describe("test setInstruction function", () => {
         direction: "E",
       };
       expect(setInstruction(roverPos, "L")).toEqual({
-        coords: { x: 1, y: 2 },
+        ...roverPos,
         direction: "S",
       });
     });
@@ -76,7 +76,7 @@ describe("test setInstruction function", () => {
         direction: "S",
       };
       expect(setInstruction(roverPos, "L")).toEqual({
-        coords: { x: 1, y: 2 },
+        ...roverPos,
         direction: "W",
       });
     });
@@ -87,7 +87,7 @@ describe("test setInstruction function", () => {
         direction: "W",
       };
       expect(setInstruction(roverPos, "L")).toEqual({
-        coords: { x: 1, y: 2 },
+        ...roverPos,
         direction: "N",
       });
     });
@@ -100,7 +100,7 @@ describe("test setInstruction function", () => {
         direction: "N",
       };
       expect(setInstruction(roverPos, "R")).toEqual({
-        coords: { x: 1, y: 2 },
+        ...roverPos,
         direction: "W",
       });
     });
@@ -111,7 +111,7 @@ describe("test setInstruction function", () => {
         direction: "E",
       };
       expect(setInstruction(roverPos, "R")).toEqual({
-        coords: { x: 1, y: 2 },
+        ...roverPos,
         direction: "N",
       });
     });
@@ -122,7 +122,7 @@ describe("test setInstruction function", () => {
         direction: "S",
       };
       expect(setInstruction(roverPos, "R")).toEqual({
-        coords: { x: 1, y: 2 },
+        ...roverPos,
         direction: "E",
       });
     });
@@ -133,7 +133,7 @@ describe("test setInstruction function", () => {
         direction: "W",
       };
       expect(setInstruction(roverPos, "R")).toEqual({
-        coords: { x: 1, y: 2 },
+        ...roverPos,
         direction: "S",
       });
     });
