@@ -1,10 +1,11 @@
-import { setInstruction, RoverPosition } from "./roverActions";
+import {
+  Direction,
+  setInstruction,
+  RoverPosition,
+  rover,
+} from "./roverActions";
 
 // plateau = createPlateau(x: number, y: number)
-// rover: Rover = createRover(pos: Position)
-// newPos:Position = setInstruction(rover: Rover, instructions: string)
-
-// MAIN
 
 export const setInstructions = (instructions: string, pos: RoverPosition) => {
   for (let instruction of instructions.split("")) {
@@ -14,8 +15,30 @@ export const setInstructions = (instructions: string, pos: RoverPosition) => {
   return pos;
 };
 
-// USAGE
-// let pos: RoverPosition = { coords: { x: 1, y: 2 }, direction: "N" };
-// const instructions = getInstructions("LMLMLMLMM");
+const getInitialRover = (location: string) => {
+  const [x, y, dir] = location.split(" ");
+  let direction: Direction = "N";
+  if (dir === "S" || dir === "W" || dir === "E") {
+    direction = dir;
+  }
 
-// const newPos = setInstructions(pos, instructions);
+  return rover(direction, { x: parseInt(x), y: parseInt(y) });
+};
+
+const roverPosToStr = (pos: RoverPosition) => {
+  return `${pos.coords.x} ${pos.coords.y} ${pos.direction}`;
+};
+
+export const appRun = (inputArray: string[]): string[] => {
+  const outputArray = [];
+  while (inputArray.length > 0) {
+    const [location, instructions] = [inputArray.shift(), inputArray.shift()];
+    if (typeof location === "string" && typeof instructions === "string") {
+      const roverPos = getInitialRover(location);
+      const newRoverPos = setInstructions(instructions, roverPos);
+      outputArray.push(roverPosToStr(newRoverPos));
+    }
+  }
+
+  return outputArray;
+};

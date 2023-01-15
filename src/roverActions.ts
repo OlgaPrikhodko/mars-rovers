@@ -1,5 +1,5 @@
 const directions = ["N", "E", "S", "W"] as const;
-type Direction = typeof directions[number];
+export type Direction = typeof directions[number];
 
 interface Coordinates {
   x: number;
