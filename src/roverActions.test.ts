@@ -1,4 +1,4 @@
-import { InstructionsType, RoverPosition, setInstruction } from "../src/index";
+import { RoverPosition, setInstruction } from "./roverActions";
 
 describe("test setInstruction function", () => {
   describe("test move instructions", () => {
