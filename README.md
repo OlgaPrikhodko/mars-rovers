@@ -56,9 +56,12 @@ facing).
 
 // Lines of Input to the Program:
 // 5 5 // Plateau
-// 1 2 N // Rover Position
+
 // LMLMLMLMM // Instructions
+// 1 2 N // Rover Position
+
 // MMRMMRMRRM
+// 3 3 E
 
 // Expected Output:
 // 1 3 N // Rover Position

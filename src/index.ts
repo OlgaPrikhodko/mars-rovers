@@ -1,4 +1,4 @@
-import { setInstruction } from "./roverActions";
+import { setInstruction, RoverPosition } from "./roverActions";
 
 // plateau = createPlateau(x: number, y: number)
 // rover: Rover = createRover(pos: Position)
@@ -6,7 +6,7 @@ import { setInstruction } from "./roverActions";
 
 // MAIN
 
-export const setInstructions = (pos: RoverPosition, instructions: string) => {
+export const setInstructions = (instructions: string, pos: RoverPosition) => {
   for (let instruction of instructions.split("")) {
     pos = setInstruction(pos, instruction);
   }

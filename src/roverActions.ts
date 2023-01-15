@@ -26,46 +26,38 @@ interface TurnDictionary {
   [key: string]: Direction;
 }
 
-const turnLeftDictionary: TurnDictionary = {
+const turnRightDictionary: TurnDictionary = {
   N: "E",
   E: "S",
   S: "W",
   W: "N",
 } as const;
 
-const turnRightDictionary: TurnDictionary = {
+const turnLeftDictionary: TurnDictionary = {
   N: "W",
-  E: "N",
-  S: "E",
   W: "S",
+  S: "E",
+  E: "N",
 } as const;
 
 const turnRight = (pos: RoverPosition) => {
-  pos.direction = turnRightDictionary[pos.direction];
-  return pos;
+  const direction = turnRightDictionary[pos.direction];
+  return { ...pos, direction };
 };
 
 const turnLeft = (pos: RoverPosition) => {
-  pos.direction = turnLeftDictionary[pos.direction];
-  return pos;
+  const direction = turnLeftDictionary[pos.direction];
+  return { ...pos, direction };
 };
 
-function moveRover1(direction: Direction, coords: Coordinates): Coordinates {
-  if (direction === "N") coords.y = coords.y + 1;
-  if (direction === "E") coords.x = coords.x + 1;
-  if (direction === "S") coords.y = coords.y - 1;
-  if (direction === "W") coords.x = coords.x - 1;
-
-  return coords;
-}
-
 function moveRover(pos: RoverPosition): RoverPosition {
-  if (pos.direction === "N") pos.coords.y = pos.coords.y + 1;
-  if (pos.direction === "E") pos.coords.x = pos.coords.x + 1;
-  if (pos.direction === "S") pos.coords.y = pos.coords.y - 1;
-  if (pos.direction === "W") pos.coords.x = pos.coords.x - 1;
+  const coords = pos.coords;
+  if (pos.direction === "N") coords.y = coords.y + 1;
+  if (pos.direction === "E") coords.x = coords.x + 1;
+  if (pos.direction === "S") coords.y = coords.y - 1;
+  if (pos.direction === "W") coords.x = coords.x - 1;
 
-  return pos;
+  return { ...pos, coords };
 }
 
 export const setInstruction = (

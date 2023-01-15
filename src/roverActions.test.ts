@@ -38,11 +38,11 @@ describe("test setInstruction function", () => {
     });
   });
 
-  describe("test turnLeft function", () => {
+  describe("test turnRight function", () => {
     it("should change direction to E if current direction is N", () => {
       const roverPos = rover("N");
 
-      expect(setInstruction(roverPos, "L")).toEqual({
+      expect(setInstruction(roverPos, "R")).toEqual({
         ...roverPos,
         direction: "E",
       });
@@ -51,7 +51,7 @@ describe("test setInstruction function", () => {
     it("should change direction to S if current direction is E", () => {
       const roverPos = rover("E");
 
-      expect(setInstruction(roverPos, "L")).toEqual({
+      expect(setInstruction(roverPos, "R")).toEqual({
         ...roverPos,
         direction: "S",
       });
@@ -60,7 +60,7 @@ describe("test setInstruction function", () => {
     it("should change direction to W if current direction is S", () => {
       const roverPos = rover("S");
 
-      expect(setInstruction(roverPos, "L")).toEqual({
+      expect(setInstruction(roverPos, "R")).toEqual({
         ...roverPos,
         direction: "W",
       });
@@ -69,18 +69,18 @@ describe("test setInstruction function", () => {
     it("should change direction to N if current direction is W", () => {
       const roverPos = rover("W");
 
-      expect(setInstruction(roverPos, "L")).toEqual({
+      expect(setInstruction(roverPos, "R")).toEqual({
         ...roverPos,
         direction: "N",
       });
     });
   });
 
-  describe("test turnRight function", () => {
+  describe("test turnLeft function", () => {
     it("should change direction to W if current direction is N", () => {
       const roverPos = rover("N");
 
-      expect(setInstruction(roverPos, "R")).toEqual({
+      expect(setInstruction(roverPos, "L")).toEqual({
         ...roverPos,
         direction: "W",
       });
@@ -89,7 +89,7 @@ describe("test setInstruction function", () => {
     it("should change direction to N if current direction is E", () => {
       const roverPos = rover("E");
 
-      expect(setInstruction(roverPos, "R")).toEqual({
+      expect(setInstruction(roverPos, "L")).toEqual({
         ...roverPos,
         direction: "N",
       });
@@ -98,7 +98,7 @@ describe("test setInstruction function", () => {
     it("should change direction to E if current direction is S", () => {
       const roverPos = rover("S");
 
-      expect(setInstruction(roverPos, "R")).toEqual({
+      expect(setInstruction(roverPos, "L")).toEqual({
         ...roverPos,
         direction: "E",
       });
@@ -107,7 +107,7 @@ describe("test setInstruction function", () => {
     it("should change direction to S if current direction is W", () => {
       const roverPos = rover("W");
 
-      expect(setInstruction(roverPos, "R")).toEqual({
+      expect(setInstruction(roverPos, "L")).toEqual({
         ...roverPos,
         direction: "S",
       });
