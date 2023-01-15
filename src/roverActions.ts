@@ -57,6 +57,15 @@ const turnLeft = (pos: RoverPosition) => {
   return { ...pos, direction };
 };
 
+const outOfBorders = (coords: Coordinates, limitCoords: Coordinates) => {
+  return (
+    coords.x < 0 ||
+    coords.y < 0 ||
+    coords.x > limitCoords.x ||
+    coords.y > limitCoords.y
+  );
+};
+
 function moveRover(pos: RoverPosition): RoverPosition {
   const coords = pos.coords;
   if (pos.direction === "N") coords.y = coords.y + 1;
@@ -64,14 +73,9 @@ function moveRover(pos: RoverPosition): RoverPosition {
   if (pos.direction === "S") coords.y = coords.y - 1;
   if (pos.direction === "W") coords.x = coords.x - 1;
 
-  if (
-    coords.x < 0 ||
-    coords.y < 0 ||
-    coords.x > pos.limitCoords.x ||
-    coords.y > pos.limitCoords.y
-  ) {
+  // out of borders
+  if (outOfBorders(coords, pos.limitCoords))
     return { ...pos, actionResult: "Fail" };
-  }
 
   return { ...pos, coords };
 }

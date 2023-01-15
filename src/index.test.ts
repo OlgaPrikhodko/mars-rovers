@@ -26,7 +26,7 @@ describe("when execute an application with array of inputs", () => {
   expect(appRun(input)).toEqual(["1 3 N", "5 1 E"]);
 });
 
-describe("when move off the maxSise of the plateau", () => {
+describe("when move off the maxSize of the plateau", () => {
   it("should return 'Fail 1 1 W' if Y position < 0", () => {
     const input = ["1 1", "1 1 W", "MM"];
     expect(appRun(input)).toEqual(["Fail 1 1 W"]);
