@@ -5,8 +5,6 @@ import {
   rover,
 } from "./roverActions";
 
-// plateau = createPlateau(x: number, y: number)
-
 export const setInstructions = (instructions: string, pos: RoverPosition) => {
   for (let instruction of instructions.split("")) {
     pos = setInstruction(pos, instruction);
