@@ -1,7 +1,7 @@
 const directions = ["N", "E", "S", "W"] as const;
 type Direction = typeof directions[number];
 
-export interface Coordinates {
+interface Coordinates {
   x: number;
   y: number;
 }
@@ -11,6 +11,16 @@ export interface RoverPosition {
   direction: Direction;
   // limitCoords: Coordinates;
 }
+
+export const rover = (
+  direction: Direction,
+  coords: Coordinates = { x: 0, y: 0 }
+): RoverPosition => {
+  return {
+    direction,
+    coords,
+  };
+};
 
 interface TurnDictionary {
   [key: string]: Direction;
