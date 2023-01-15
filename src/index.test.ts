@@ -21,7 +21,29 @@ describe("test multiply instructions when executing multiple commands", () => {
   });
 });
 
-describe("when execute an application", () => {
-  const input = ["1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"];
+describe("when execute an application with array of inputs", () => {
+  const input = ["5, 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"];
   expect(appRun(input)).toEqual(["1 3 N", "5 1 E"]);
+});
+
+describe("when move off the maxSise of the plateau", () => {
+  it("should return 'Fail 1 1 W' if Y position < 0", () => {
+    const input = ["1 1", "1 1 W", "MM"];
+    expect(appRun(input)).toEqual(["Fail 1 1 W"]);
+  });
+
+  it("should return 'Fail 1 1 S' if X position < 0", () => {
+    const input = ["1 1", "1 1 S", "MM"];
+    expect(appRun(input)).toEqual(["Fail 1 1 S"]);
+  });
+
+  it("should return 'Fail 1 1 N' if X position > maxX", () => {
+    const input = ["1 1", "1 1 N", "M"];
+    expect(appRun(input)).toEqual(["Fail 1 1 N"]);
+  });
+
+  it("should return 'Fail 1 1 E' if Y position > maxY", () => {
+    const input = ["1 1", "1 1 E", "M"];
+    expect(appRun(input)).toEqual(["Fail 1 1 E"]);
+  });
 });

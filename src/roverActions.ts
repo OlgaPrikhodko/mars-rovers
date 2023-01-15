@@ -6,19 +6,26 @@ interface Coordinates {
   y: number;
 }
 
+type ActionResult = "Success" | "Fail";
+
 export interface RoverPosition {
   coords: Coordinates;
   direction: Direction;
-  // limitCoords: Coordinates;
+  limitCoords: Coordinates;
+  actionResult: ActionResult;
 }
 
 export const rover = (
   direction: Direction,
-  coords: Coordinates = { x: 0, y: 0 }
+  coords: Coordinates = { x: 0, y: 0 },
+  limitCoords: Coordinates = { x: 5, y: 5 },
+  actionResult: ActionResult = "Success"
 ): RoverPosition => {
   return {
     direction,
     coords,
+    limitCoords,
+    actionResult,
   };
 };
 
@@ -56,6 +63,15 @@ function moveRover(pos: RoverPosition): RoverPosition {
   if (pos.direction === "E") coords.x = coords.x + 1;
   if (pos.direction === "S") coords.y = coords.y - 1;
   if (pos.direction === "W") coords.x = coords.x - 1;
+
+  if (
+    coords.x < 0 ||
+    coords.y < 0 ||
+    coords.x > pos.limitCoords.x ||
+    coords.y > pos.limitCoords.y
+  ) {
+    return { ...pos, actionResult: "Fail" };
+  }
 
   return { ...pos, coords };
 }
