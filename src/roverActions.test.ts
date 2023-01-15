@@ -1,4 +1,4 @@
-import { rover, RoverPosition, setInstruction } from "./roverActions";
+import { rover, setInstruction } from "./roverActions";
 
 describe("test setInstruction function", () => {
   describe("test move instructions", () => {
