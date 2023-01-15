@@ -6,7 +6,7 @@ import { setInstruction } from "./roverActions";
 
 // MAIN
 
-const setInstructions = (pos: RoverPosition, instructions: string) => {
+export const setInstructions = (pos: RoverPosition, instructions: string) => {
   for (let instruction of instructions.split("")) {
     pos = setInstruction(pos, instruction);
   }
