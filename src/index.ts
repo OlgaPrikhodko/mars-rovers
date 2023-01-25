@@ -5,6 +5,8 @@ import {
   rover,
 } from "./roverActions";
 
+import { clear, print, askQuestion } from "./console";
+
 export const setInstructions = (instructions: string, pos: RoverPosition) => {
   for (let instruction of instructions.split("")) {
     pos = setInstruction(pos, instruction);
@@ -51,4 +53,53 @@ export const appRun = (inputArray: string[]): string[] => {
   return outputArray;
 };
 
-console.log(appRun(["5, 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"]));
+// console.log(appRun(["5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"]));
+const output: string[] = [];
+
+function checkPlateauSize(s: string) {
+  return s && /^\d+ \d+$/.test(s);
+}
+
+function getPlateauString(value: string) {
+  if (checkPlateauSize(value)) {
+    output.push(value);
+    print(
+      `....succesfully got upper-right Plateau coordinates...............[${value}]`
+    );
+    // return getRoverPosition();
+  }
+
+  return endMission();
+}
+
+function getPlateauInput() {
+  askQuestion(
+    `Please input the upper-right coordinates of the
+    Plateau? (expecting format: 'X Y' e.g. '5 5')`,
+    getPlateauString
+  );
+}
+
+function endMission(): void {
+  clear(false);
+  print("***************************************");
+  print(`Sadly, the entry code failed! Please try again ☹`);
+  print("***************************************");
+  askQuestion("Press ENTER to restart! ", startMarsRoverMission);
+}
+
+function startMarsRoverMission(): void {
+  clear(false);
+  print("----------------------------------");
+  print("| Welcome to Mars Rover Mission! |");
+  print("----------------------------------");
+  print(`This is a program to move rovers around the surface of Mars.`);
+  print("--------------------------------------------");
+  getPlateauInput();
+
+  // getPlateau coords
+  // get rovers coords
+  // would you like send another Rover?
+}
+
+startMarsRoverMission();
