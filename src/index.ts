@@ -88,7 +88,7 @@ function checkRoverPositionString(s: string) {
 function getRoverString(value: string) {
   if (checkRoverPositionString(value)) {
     userInput.push(value);
-    // getCommands();
+    getCommandsInput();
   } else {
     print("***************************************");
     print(`Sadly, the entry code failed! Please try again ☹`);
@@ -98,11 +98,41 @@ function getRoverString(value: string) {
 }
 
 function getRoverPositionInput() {
-  print(`Plateau coords...[${userInput[0]}]`);
-  // existing Rovers
+  printUserInput();
   askQuestion(
     `Please input Rover position in format X Y Orientation [N, W, E, S] e.g. '1 2 N' `,
     getRoverString
+  );
+}
+
+function checkCommandsString(s: string) {
+  return s && /^[LRM]+$/.test(s);
+}
+
+function getCommandsString(value: string) {
+  if (checkCommandsString(value)) {
+    userInput.push(value);
+    // console.log("Resulting Rover Position:");
+    // console.log(appRun(userInput));
+  }
+}
+function printUserInput() {
+  print(`Plateau coords...[${userInput[0]}]`);
+  let index = 1;
+  while (index < userInput.length) {
+    const roverCoords = userInput[index];
+    let roverInstructions = "not defined yet";
+    if (index + 1 < userInput.length) {
+      roverInstructions = userInput[index];
+    }
+    print(`Rover coords ${roverCoords}: instructions ${roverInstructions}`);
+  }
+}
+
+function getCommandsInput() {
+  askQuestion(
+    `Please input instructions for Rover moving around the Plateau  [L, R, M] i.e. 'LMLMLMLMM' `,
+    getCommandsString
   );
 }
 
