@@ -54,7 +54,8 @@ export const appRun = (inputArray: string[]): string[] => {
 };
 
 // console.log(appRun(["5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"]));
-const output: string[] = [];
+
+export const userInput: string[] = [];
 
 function checkPlateauSize(s: string) {
   return s && /^\d+ \d+$/.test(s);
@@ -62,14 +63,14 @@ function checkPlateauSize(s: string) {
 
 function getPlateauString(value: string) {
   if (checkPlateauSize(value)) {
-    output.push(value);
+    userInput.push(value);
     print(
       `....succesfully got upper-right Plateau coordinates...............[${value}]`
     );
-    // return getRoverPosition();
+    return getRoverPositionInput();
+  } else {
+    return endMission();
   }
-
-  return endMission();
 }
 
 function getPlateauInput() {
@@ -77,6 +78,31 @@ function getPlateauInput() {
     `Please input the upper-right coordinates of the
     Plateau? (expecting format: 'X Y' e.g. '5 5')`,
     getPlateauString
+  );
+}
+
+function checkRoverPositionString(s: string) {
+  return s && /^\d+ \d+ [NESW]$/.test(s);
+}
+
+function getRoverString(value: string) {
+  if (checkRoverPositionString(value)) {
+    userInput.push(value);
+    // getCommands();
+  } else {
+    print("***************************************");
+    print(`Sadly, the entry code failed! Please try again ☹`);
+
+    return getRoverPositionInput();
+  }
+}
+
+function getRoverPositionInput() {
+  print(`Plateau coords...[${userInput[0]}]`);
+  // existing Rovers
+  askQuestion(
+    `Please input Rover position in format X Y Orientation [N, W, E, S] e.g. '1 2 N' `,
+    getRoverString
   );
 }
 
