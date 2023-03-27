@@ -19,7 +19,9 @@ Example
 `0 0 N`
 
 This means the Rover is at the bottom-left corner facing in the North direction.
-N.B. Assume that the square directly North from (x, y) is (x, y+1), and the square directly
+N.B.
+
+Assume that the square directly North from (x, y) is (x, y+1), and the square directly
 East from (x, y) is (x + 1, y)
 
 ## Instructing a Rover to Move Around the Plateau
